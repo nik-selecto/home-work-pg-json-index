@@ -9,7 +9,8 @@
     "start:dev": "ts-node-dev src/index.ts",
     "test": "echo 'husky' will run 'test' script on every push. If you have tests - update 'test' script",
     "lint": "npx eslint --fix 'src/**/*.ts' './jest.config.ts'",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "migration:create": "node migrations/index.js create"
   },
   "husky": {
     "hooks": {
@@ -25,7 +26,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "dotenv": "^16.0.0"
+    "dotenv": "^16.0.0",
+    "node-pg-migrate": "^6.2.1"
   },
   "devDependencies": {
     "@jest/types": "^27.5.1",
