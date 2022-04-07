@@ -10,7 +10,7 @@
     "test": "echo 'husky' will run 'test' script on every push. If you have tests - update 'test' script",
     "lint": "npx eslint --fix 'src/**/*.ts' './jest.config.ts'",
     "prepare": "husky install",
-    "migration:create": "node migrations/index.js create"
+    "migrations": "npx ts-node migrations/index.ts"
   },
   "husky": {
     "hooks": {
