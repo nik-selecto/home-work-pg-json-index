@@ -1,4 +1,4 @@
-import { plainToInstance } from 'class-transformer';
+import { plainToInstance, Type } from 'class-transformer';
 import {
   IsEnum,
   IsNotEmpty,
@@ -17,6 +17,7 @@ class EnviromentVariables implements ProjectConfigType {
   PG_HOST: string;
 
   @IsNumber()
+  @Type(() => Number)
   PG_PORT: number;
 
   @IsString()
@@ -38,7 +39,7 @@ class EnviromentVariables implements ProjectConfigType {
 
 export function validateConfig(config: Record<string, unknown>) {
   const validatedConfig = plainToInstance(EnviromentVariables, config, {
-    enableImplicitConversion: true,
+    enableImplicitConversion: false,
   });
 
   const errors = validateSync(validatedConfig, {
