@@ -11,13 +11,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppController = void 0;
 const common_1 = require("@nestjs/common");
+const config_1 = require("@nestjs/config");
 const app_service_1 = require("./app.service");
 let AppController = class AppController {
-    constructor(appService) {
+    constructor(appService, configSerivice) {
         this.appService = appService;
+        this.configSerivice = configSerivice;
     }
     getHello() {
-        return this.appService.getHello();
+        return this.configSerivice.get('PG_URL');
     }
 };
 __decorate([
@@ -28,7 +30,8 @@ __decorate([
 ], AppController.prototype, "getHello", null);
 AppController = __decorate([
     (0, common_1.Controller)(),
-    __metadata("design:paramtypes", [app_service_1.AppService])
+    __metadata("design:paramtypes", [app_service_1.AppService,
+        config_1.ConfigService])
 ], AppController);
 exports.AppController = AppController;
 //# sourceMappingURL=app.controller.js.map
