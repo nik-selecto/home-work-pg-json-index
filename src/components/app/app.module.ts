@@ -1,12 +1,11 @@
 import { Module } from '@nestjs/common';
-import { config } from 'dotenv';
-import { projectConfigModule } from '../../config/config.module';
+import { projectConfigModule } from '../../general-modules/config/config.module';
+import { pgModule } from '../../general-modules/pg/pg.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
-config();
 @Module({
-  imports: [projectConfigModule],
+  imports: [projectConfigModule, pgModule],
   controllers: [AppController],
   providers: [AppService],
 })
