@@ -1,5 +1,7 @@
 import { Module } from '@nestjs/common';
+import { APP_FILTER } from '@nestjs/core';
 import { ProjectConfigModule } from '../../general-modules/config/config.module';
+import { AllExceptionsFilter } from '../../general-modules/exceptions/all-exceptions.filter';
 import { MongoModule } from '../../general-modules/mongo/mongo.module';
 import { PgModule } from '../../general-modules/pg/pg.module';
 import { UsersModule } from '../users/users.module';
@@ -9,6 +11,9 @@ import { AppService } from './app.service';
 @Module({
   imports: [ProjectConfigModule, PgModule, MongoModule, UsersModule],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [{
+    provide: APP_FILTER,
+    useClass: AllExceptionsFilter,
+  }, AppService],
 })
 export class AppModule {}

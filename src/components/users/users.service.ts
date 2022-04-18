@@ -13,4 +13,8 @@ export class UsersService {
   public findAll() {
     return this.userModel.find().lean();
   }
+
+  public findByEmail(email: string) {
+    return this.userModel.findOne({ email }).lean();
+  }
 }
