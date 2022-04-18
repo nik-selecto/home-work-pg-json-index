@@ -59,6 +59,10 @@ class EnviromentVariables implements ProjectConfigType {
   @IsString()
   @IsNotEmpty()
   MONGO_USER: string;
+
+  @IsString()
+  @IsNotEmpty()
+  SALT_USER_PASS: string;
 }
 
 export function validateConfig(config: Record<string, unknown>) {

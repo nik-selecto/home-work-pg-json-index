@@ -18,6 +18,7 @@ export type ProjectConfigType = {
   MONGO_USER: string;
   MONGO_DB: string;
   MONGO_URL: string;
+  SALT_USER_PASS: string;
 };
 
 declare global {
