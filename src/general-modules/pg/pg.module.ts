@@ -2,7 +2,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ProjectConfigType } from '../config/config.type';
 
-export const pgModule = TypeOrmModule.forRootAsync({
+export const PgModule = TypeOrmModule.forRootAsync({
   imports: [ConfigModule],
   inject: [ConfigService],
   useFactory(configService: ConfigService<ProjectConfigType>) {

@@ -1,6 +1,7 @@
 export enum ConfigModeTypeEnum {
   DEV = 'dev',
   PROD = 'prod',
+  TEST = 'test',
 }
 
 export type ProjectConfigType = {

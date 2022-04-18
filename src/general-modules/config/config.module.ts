@@ -4,7 +4,7 @@ import { validateConfig } from './config.validation';
 
 config();
 
-export const projectConfigModule = ConfigModule.forRoot({
+export const ProjectConfigModule = ConfigModule.forRoot({
   envFilePath: `.${process.env.MODE}.env`,
   validate: validateConfig,
   isGlobal: true,
