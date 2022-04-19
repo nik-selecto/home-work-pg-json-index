@@ -11,6 +11,8 @@ export class AllExceptionsFilter implements ExceptionFilter {
     const { httpAdapter } = this.httpAdapterHost;
     const ctx = host.switchToHttp();
 
+    console.error(exception);
+
     if (exception instanceof BadRequestException) {
       return httpAdapter.reply(ctx.getResponse<FastifyReply>(), exception.getResponse());
     }
