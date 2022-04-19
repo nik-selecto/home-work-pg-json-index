@@ -3,3 +3,6 @@ dist
 .env
 .prod.env
 .dev.env
+draft.ts
+
+.idea
