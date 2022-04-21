@@ -13,7 +13,7 @@ export class AuthService {
   ) { }
 
   public async validateUser(email: string, pass: string) {
-    const user = await this.userModel.findOne({ email });
+    const user = await this.userModel.findOne({ email }).lean();
 
     if (!(user && bcrypt.compareSync(pass, user.password))) return null;
     
@@ -23,7 +23,7 @@ export class AuthService {
   }
 
   async login(user: Omit<User, 'password'>) {
-    const payload = { _id: user._id, id: String(user._id) };
+    const payload = { id: user._id };
 
     return {
       access: this.jwtService.sign(payload),

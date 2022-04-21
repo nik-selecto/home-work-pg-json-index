@@ -1,5 +1,6 @@
 import { Body, Controller, Get, Param, Post, UseGuards } from "@nestjs/common";
 import { JwtGuard } from "../auth/guards/jwt.guard";
+import { MeGuard } from "../auth/guards/me.guard";
 import { CreateUserDto } from "./dto/create-user.dto";
 import { UsersService } from "./users.service";
 
@@ -13,12 +14,13 @@ export class UsersController {
   }
 
   @Get('me/:userId')
-  @UseGuards(JwtGuard)
+  @UseGuards(MeGuard)
   myProfile(@Param('userId') userId: string) {
     return this.usersService.fullUserInfo(userId);
   }
 
   @Get()
+  @UseGuards(JwtGuard)
   findAll() {
     return this.usersService.findAll();
   }

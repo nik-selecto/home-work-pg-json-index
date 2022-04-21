@@ -1,4 +1,4 @@
-import { ArgumentsHost, BadRequestException, Catch, ExceptionFilter, HttpStatus } from '@nestjs/common';
+import { ArgumentsHost, BadRequestException, Catch, ExceptionFilter, ForbiddenException, HttpStatus, UnauthorizedException } from '@nestjs/common';
 import { HttpAdapterHost } from '@nestjs/core';
 import { FastifyReply } from 'fastify';
 
@@ -15,6 +15,10 @@ export class AllExceptionsFilter implements ExceptionFilter {
 
     if (exception instanceof BadRequestException) {
       return httpAdapter.reply(ctx.getResponse<FastifyReply>(), exception.getResponse());
+    } else if (exception instanceof ForbiddenException) {
+      return httpAdapter.reply(ctx.getResponse(), exception.getResponse());
+    } else if (exception instanceof UnauthorizedException) {
+      return httpAdapter.reply(ctx.getResponse(), exception.getResponse());
     }
 
 
