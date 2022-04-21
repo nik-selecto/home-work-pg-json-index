@@ -30,4 +30,8 @@ export class UsersService {
 
     return this.userModel.create({ ...user, password: hash }).then((created) => created._id) as Promise<string>;
   }
+
+  public async fullUserInfo(userId: string) {
+    return this.userModel.findById(userId).lean();
+  }
 }
