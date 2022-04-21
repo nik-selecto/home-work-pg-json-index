@@ -19,6 +19,8 @@ export class AllExceptionsFilter implements ExceptionFilter {
       return httpAdapter.reply(ctx.getResponse(), exception.getResponse());
     } else if (exception instanceof UnauthorizedException) {
       return httpAdapter.reply(ctx.getResponse(), exception.getResponse());
+    } else if (String((exception as any)?.code).split('').length === 5) {
+      return httpAdapter.reply(ctx.getResponse(), { error: exception, type: 'Postgres' });
     }
 
 

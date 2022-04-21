@@ -1,18 +1,21 @@
-import { ConfigModule, ConfigService } from '@nestjs/config';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { ProjectConfigType } from '../config/config.type';
+import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
+import { Pool } from 'pg';
+import { PG_CONNECTION } from './pg-constant';
 
-export const PgModule = TypeOrmModule.forRootAsync({
+const pgProvider = {
+  provide: PG_CONNECTION,
+  useValue: new Pool({
+    user: process.env.PG_USER,
+    password: process.env.PG_PASS,
+    database: process.env.PG_DB,
+    host: process.env.PG_HOST,
+    port: +process.env.PG_PORT,
+  }),
+};
+@Module({
   imports: [ConfigModule],
-  inject: [ConfigService],
-  useFactory(configService: ConfigService<ProjectConfigType>) {
-    return {
-      type: 'postgres',
-      port: configService.get('PG_PORT'),
-      host: configService.get('PG_HOST'),
-      database: configService.get('PG_DB'),
-      username: configService.get('PG_USER'),
-      password: configService.get('PG_PASS'),
-    };
-  },
-});
+  providers: [pgProvider],
+  exports: [pgProvider],
+})
+export class PgModule { }
