@@ -6,7 +6,7 @@ import { ProjectConfigType } from "../../../general-modules/config/config.type";
 import { Types } from 'mongoose';
 import { JwtPayloadType } from "./jwt.payload.type";
 @Injectable()
-export class JwtStrategy extends PassportStrategy(PassportJwtStrategy) {
+export class JwtAccessStrategy extends PassportStrategy(PassportJwtStrategy) {
   constructor(private config: ConfigService<ProjectConfigType>) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),

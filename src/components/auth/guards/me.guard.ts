@@ -17,7 +17,6 @@ export class MeGuard extends AuthGuard('jwt') {
 
     if (userId !== user.id) throw new ForbiddenException('This content is for owner only');
 
-
     return user;
   }
 }
