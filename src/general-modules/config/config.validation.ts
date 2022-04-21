@@ -9,6 +9,14 @@ import {
 import { ConfigModeTypeEnum, ProjectConfigType } from './config.type';
 
 class EnviromentVariables implements ProjectConfigType {
+  @IsString()
+  @IsNotEmpty()
+  JWT_ACCESS_SECRET: string;
+
+  @IsString()
+  @IsNotEmpty()
+  JWT_REFRESH_SECRET: string;
+  
   @IsEnum(ConfigModeTypeEnum)
   MODE: ConfigModeTypeEnum;
 

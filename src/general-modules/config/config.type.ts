@@ -19,6 +19,8 @@ export type ProjectConfigType = {
   MONGO_DB: string;
   MONGO_URL: string;
   SALT_USER_PASS: string;
+  JWT_ACCESS_SECRET: string;
+  JWT_REFRESH_SECRET: string;
 };
 
 declare global {
