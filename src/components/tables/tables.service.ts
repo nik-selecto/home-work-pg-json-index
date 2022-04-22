@@ -1,7 +1,7 @@
 import { Inject, Injectable } from "@nestjs/common";
 import { Pool } from "pg";
 import { PG_CONNECTION } from "../../general-modules/pg/pg-constant";
-import { JsonDocxampleDto } from "./dto/json-doc-example.dto";
+import { DataJsonbColumnDto } from "./dto/json-doc-example.dto";
 import { JsonLeave } from "./dto/json-leave.type";
 
 const isString = (str) => typeof str === 'string';
@@ -34,7 +34,7 @@ function mockJson(j: JsonLeave) {
 export class TablesService {
   constructor(@Inject(PG_CONNECTION) private pg: Pool) { }
 
-  async fillTableForUser(userId: string, tableName: string, docExample: JsonDocxampleDto) {
+  async fillTableForUser(userId: string, tableName: string, docExample: DataJsonbColumnDto) {
     const _tableName = `${this.mongoIdToAbc(userId)}__${tableName}`;
 
     try {

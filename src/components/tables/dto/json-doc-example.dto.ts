@@ -1,9 +1,10 @@
-import { IsNumber } from "class-validator";
+import { IsDefined, IsNumber } from "class-validator";
 import { JsonLeave } from "./json-leave.type";
 
-export class JsonDocxampleDto {
+export class DataJsonbColumnDto {
   @IsNumber({ maxDecimalPlaces: 0 })
   howMany: number;
 
+  @IsDefined()
   example: JsonLeave;
 }

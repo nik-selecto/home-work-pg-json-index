@@ -20,9 +20,9 @@ export class TablesController {
 
   @Post('for-user/:userId/fill')
   @UseGuards(MeGuard)
-  fillTableForUser(@Param('userId') userId: string, @Body() data: FillTableDto) {
-    const { tableName, example } = data;
+  fillTableForUser(@Param('userId') userId: string, @Body() fillTableDto: FillTableDto) {
+    const { tableName, data } = fillTableDto;
 
-    return this.tablesService.fillTableForUser(userId, tableName, example);
+    return this.tablesService.fillTableForUser(userId, tableName, data);
   }
 }
